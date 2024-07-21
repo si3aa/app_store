@@ -15,21 +15,7 @@ class StoreApp extends StatelessWidget {
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
-          onPressed: () async {
-            http.Response response = await http
-                .post(Uri.parse('https://fakestoreapi.com/products'), body: {
-              'title': 'Test Product',
-              'price': '9.99',
-              'description': 'This is a test product.',
-              'category': 'Electronics',
-              'image': 'https://via.placeholder.com/150',
-            }, headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Authorization': 'Bearer'
-            });
-            print(response.body);
-          },
+          onPressed: () {},
         ),
         appBar: AppBar(
           backgroundColor: Colors.blue,
