@@ -23,12 +23,11 @@ class StoreApp extends StatelessWidget {
               'description': 'This is a test product.',
               'category': 'Electronics',
               'image': 'https://via.placeholder.com/150',
-            },
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded'
-            }
-            );
+            }, headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Bearer'
+            });
             print(response.body);
           },
         ),
