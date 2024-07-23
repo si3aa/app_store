@@ -1,3 +1,4 @@
+import 'package:app_store/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,25 +12,11 @@ class StoreApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {},
-        ),
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          centerTitle: true,
-          title: const Text(
-            'Store App',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        body: const SizedBox(),
-      ),
+      routes: {
+        HomePage.routeName: (context) => const HomePage(),
+        
+      },
+      initialRoute: HomePage.routeName,
     );
   }
 }
