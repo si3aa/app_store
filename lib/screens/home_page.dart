@@ -1,3 +1,6 @@
+import 'package:app_store/models/product_model.dart';
+import 'package:app_store/services/get_all_products.dart';
+import 'package:app_store/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -29,57 +32,38 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        height: 130,
-        width: 200,
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(.2),
-            blurRadius: 40,
-            spreadRadius: 0,
-            offset: const Offset(10, 10),
-          )
-        ]),
-        child: const Card(
-          elevation: 10,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'HandBag lv',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      r'$225',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                    Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                    )
-                  ],
-                )
-              ],
-            ),
+      body: Padding(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 65,
           ),
-        ),
-      ),
+          child: FutureBuilder<List<ProductModel>>(
+            future: AllProductsServices().getAllProducts(),
+            builder: (context, snapshot) {
+               if (snapshot.hasData) {
+                List<ProductModel> products = snapshot.data!;
+                return GridView.builder(
+                    itemCount: products.length,
+                    clipBehavior: Clip.none,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 1.1,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 100,
+                    ),
+                    itemBuilder: (context, index) {
+                      return CustomCard(
+                        product: products[index],
+                      );
+                    });
+               } 
+              else {
+                 return const Center(child: CircularProgressIndicator());
+               }
+            },
+          )),
     );
   }
 }
