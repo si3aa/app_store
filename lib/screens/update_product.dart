@@ -3,9 +3,12 @@ import 'package:app_store/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+// ignore: must_be_immutable
 class UpdateProductPage extends StatelessWidget {
-  const UpdateProductPage({super.key});
+  UpdateProductPage({super.key});
   static String routeName = "update";
+  String? productName, decoration, image;
+  int? price;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,35 +35,50 @@ class UpdateProductPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CustomTextField(
-              hintText: "Product Name",
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextField(
-              hintText: "Description",
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextField(
-              hintText: "Price",
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            CustomTextField(
-              hintText: "image ",
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            CustomButon(text: 'Update')
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 100),
+              CustomTextField(
+                onChanged: (data) {
+                  productName = data;
+                },
+                hintText: "Product Name",
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomTextField(
+                onChanged: (data) {
+                  decoration = data;
+                },
+                hintText: "Description",
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomTextField(
+                inputType: TextInputType.number,
+                onChanged: (data) {
+                  price = int.parse(data);
+                },
+                hintText: "Price",
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomTextField(
+                onChanged: (data) {
+                  image = data;
+                },
+                hintText: "image ",
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              CustomButon(text: 'Update')
+            ],
+          ),
         ),
       ),
     );
