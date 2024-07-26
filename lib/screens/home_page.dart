@@ -33,37 +33,38 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 65,
-          ),
-          child: FutureBuilder<List<ProductModel>>(
-            future: AllProductsServices().getAllProducts(),
-            builder: (context, snapshot) {
-               if (snapshot.hasData) {
-                List<ProductModel> products = snapshot.data!;
-                return GridView.builder(
-                    itemCount: products.length,
-                    clipBehavior: Clip.none,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 1.1,
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 100,
-                    ),
-                    itemBuilder: (context, index) {
-                      return CustomCard(
-                        product: products[index],
-                      );
-                    });
-               } 
-              else {
-                 return const Center(child: CircularProgressIndicator());
-               }
-            },
-          )),
+        padding: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+          top: 65,
+        ),
+        child: FutureBuilder<List<ProductModel>>(
+          future: AllProductsServices().getAllProducts(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<ProductModel> products = snapshot.data!;
+              return GridView.builder(
+                  itemCount: products.length,
+                  clipBehavior: Clip.none,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.1,
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 100,
+                  ),
+                  itemBuilder: (context, index) {
+                    return CustomCard(
+                      product: products[index],
+                    );
+                  });
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

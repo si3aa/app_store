@@ -7,6 +7,7 @@ class UpdateProduct {
     required String price,
     required String desc,
     required String image,
+    required int id,
     required String category,
   }) async {
     // ignore: missing_required_param
