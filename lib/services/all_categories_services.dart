@@ -1,9 +1,8 @@
 import 'package:app_store/helper/api.dart';
 
-class AllCategoriesServices {
-  Future<List<dynamic>> getAllCategories() async {
+class AllCategoriesService {
+  Future<List<dynamic>> getAllCateogires() async {
     List<dynamic> data =
-        // ignore: missing_required_param
         await Api().get(url: 'https://fakestoreapi.com/products/categories');
 
     return data;

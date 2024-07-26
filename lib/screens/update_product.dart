@@ -92,11 +92,11 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
                 ),
                 CustomButon(
                   text: 'Update',
-                  onTap: () {
+                  onTap: ()async {
                     isLoading = true;
                     setState(() {});
                     try {
-                      updateProduct(product);
+                     await updateProduct(product);
                       print('success');
                     } catch (e) {
                      print(e.toString());
@@ -121,5 +121,5 @@ class _UpdateProductPageState extends State<UpdateProductPage> {
         desc: decoration == null ? product.description : decoration!,
         image: image == null ? product.image : image!,
         category: product.category);
-  }
+}
 }

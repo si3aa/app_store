@@ -47,15 +47,13 @@ class HomePage extends StatelessWidget {
                   itemCount: products.length,
                   clipBehavior: Clip.none,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 1.1,
                     crossAxisCount: 2,
+                    childAspectRatio: 1.5,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 100,
                   ),
                   itemBuilder: (context, index) {
-                    return CustomCard(
-                      product: products[index],
-                    );
+                    return CustomCard(product: products[index]);
                   });
             } else {
               return const Center(
